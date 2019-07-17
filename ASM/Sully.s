@@ -1,6 +1,6 @@
 %define MACHO_SYSCALL(nb) nb | 0x2000000
-%define i '5'
-%define X 5
+%define i 5
+%define X i
 
 section .text
 	global start
@@ -11,8 +11,8 @@ section .text
 start:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 0x10
-	mov BYTE [rel filename + 6], i
+	sub rsp, 0x18
+	mov BYTE [rel filename + 6], i + 0x30
 
 	;OPEN
 	mov rax, MACHO_SYSCALL(5)
@@ -39,9 +39,9 @@ start:
 	syscall
 
 	;SYSTEM
-	mov BYTE [rel nasm + 22], i
-	mov BYTE [rel nasm + 77], i
-	mov BYTE [rel nasm + 85], i
+	mov BYTE [rel nasm + 22], i + 0x30
+	mov BYTE [rel nasm + 77], i + 0x30
+	mov BYTE [rel nasm + 85], i + 0x30
 	lea	rdi, [rel nasm]
 	call _system
 
