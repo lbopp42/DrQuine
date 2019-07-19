@@ -1,6 +1,6 @@
 %define MACHO_SYSCALL(nb) nb | 0x2000000
-%define i 5
-%ifndef X
+%define i 4
+%ifndef
 	%define X i
 %endif
 
@@ -13,7 +13,7 @@ section .text
 start:
 	push rbp
 	mov rbp, rsp
-	sub rsp, 0x28
+	sub rsp, 0x20
 	mov BYTE [rel filename + 6], X + 0x30
 
 	;OPEN
