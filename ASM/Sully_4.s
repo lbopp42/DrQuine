@@ -1,5 +1,5 @@
 %define MACHO_SYSCALL(nb) nb | 0x2000000
-%define i 5
+%define i 4
 %ifndef X
 	%define X i
 %endif
